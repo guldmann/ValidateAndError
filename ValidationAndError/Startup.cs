@@ -48,6 +48,9 @@ namespace ValidationAndError
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            services.AddMemoryCache();
+            services.AddTransient<CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,10 +67,11 @@ namespace ValidationAndError
 
             app.UseAuthorization();
 
-            app.UseSwagger();
+            app.UseSwagger(c => { c.SerializeAsV2 = true; });
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "test API V1");
+                c.DisplayRequestDuration();
             });
 
             app.UseEndpoints(endpoints =>

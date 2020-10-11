@@ -13,6 +13,13 @@ namespace ValidationAndError.Controllers
     [ApiController]
     public class CustomerController : ControllerBase
     {
+        private readonly CustomerService _customerService;
+
+        public CustomerController(CustomerService customerService)
+        {
+            _customerService = customerService;
+        }
+
         /// <summary>
         /// Create a customer
         /// </summary>
@@ -25,11 +32,22 @@ namespace ValidationAndError.Controllers
         [ProducesResponseType(typeof(Envelope), 400)]
         [Produces("application/json")]
         [HttpPost]
-        public IActionResult CreateCustomer([FromBody] Customer customer)
+        public async Task<IActionResult> CreateCustomer([FromBody] Customer customer)
+        {
+            // no model validation here
+            await _customerService.SetCustomer(customer);
+            return Ok(customer);
+        }
+
+        [ProducesResponseType(200)]
+        [ProducesResponseType(typeof(Envelope), 400)]
+        [Produces("application/json")]
+        [HttpGet]
+        public async Task<IActionResult> GetCustomer(string name)
         {
             // no model validation here
 
-            return Ok(customer);
+            return Ok(await _customerService.GetCustomer(name));
         }
     }
 }
