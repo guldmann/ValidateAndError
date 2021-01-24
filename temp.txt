@@ -1,0 +1,12 @@
+
+    Directory: C:\Users\john\sourseCode\johnjohnTemp\ValidateAndError
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          2021-01-24    15:41                ValidationAndError
+-a---          2021-01-24    15:41            340 .dockerignore
+-a---          2021-01-24    15:41           6002 .gitignore
+-a---          2021-01-24    15:41             87 README.md
+-a---          2021-01-24    15:42              0 temp.txt
+-a---          2021-01-24    15:41           1160 ValidationAndError.sln
+
